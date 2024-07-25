@@ -4,8 +4,13 @@ import { Coin, CoinList, GlobalState } from '../../types/types.tsx';
 import { interval, updatePrices } from '../../util/LiveUpdatePrices.ts';
 import { useEffect } from 'react';
 
+/*
+ * Tracker method tracks the currently selected coins by user, but it doesn't handle pinned coins
+ * This methods also utilises utility functions defined in /src/util/ directory for live updating the prices
+*/
 function Tracker({ coins, setCoins, pinned, setPinned, selectedCurrency, setSelectedCurrency } :GlobalState) {
 
+  //Pin the coin to dashboard and remove it from the currently selected coins list
   function pinCoin(e) {
     const coin :Coin | undefined = coins.find((coin :Coin) => (`${coin.data.base}_${coin.data.currency}` === e.target.id));
 
@@ -19,6 +24,7 @@ function Tracker({ coins, setCoins, pinned, setPinned, selectedCurrency, setSele
     setCoins(tmpCoins);
   }
 
+  //Remove a coin from the currently selected coins list by clicking on the element
   function removeCoin(e) {
 
     const coin :Coin | undefined = coins.find((coin :Coin) => (`${coin.data.base}_${coin.data.currency}` === e.target.id));
@@ -33,6 +39,7 @@ function Tracker({ coins, setCoins, pinned, setPinned, selectedCurrency, setSele
     setCoins(tmpCoins);
   }
 
+  //Live update the prices by short polling the api endpoint
   useEffect(() => {
     setInterval(() => {
       setCoins(updatePrices);

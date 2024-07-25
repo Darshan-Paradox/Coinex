@@ -12,11 +12,15 @@ import { useState } from 'react';
 
 function App() {
 
+  //State for showing current coins which are yet to be pinned
   const [coins, setCoins] = useState<CoinList>([]);
+  //State for showing coins which are pinned
   const [pinned, setPinned] = useState<CoinList>([]);
 
+  //State for storing the currency to display the value of crypto-coins
   const [selectedCurrency, setSelectedCurrency] = useState<string>("INR");
 
+  //Global state of application
   const globalState :GlobalState = {
     coins: coins,
     setCoins: setCoins,

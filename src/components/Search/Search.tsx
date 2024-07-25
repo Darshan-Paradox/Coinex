@@ -7,9 +7,17 @@ import SearchList   from './SearchList.tsx';
 import './Search.css';
 
 
+/**
+ * Search component handles searching a particular coin from a list of all available coins
+ * This also takes care of all the input errors that could occur, for e.g.
+ * - Coin which doesn't exist in the list of all available coins
+ * - Coin which is already pinned
+ */
 function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned, setPinned } :GlobalState) {
 
+  //state storing list of all available coins
   const [allCoins, setAllCoins] = useState<any>([]);
+  //state storing the input coin code by user
   const [inputCoinId, setInputCoinId] = useState<string>("");
 
 
@@ -17,6 +25,7 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
     setInputCoinId(e.target.value.toUpperCase());
   }
 
+  //function to handle Enter/Return key as submission action
   async function returnToSubmit(e) : Promise<void> {
     if (e.key == "Enter") {
       submit(e);
@@ -49,6 +58,7 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
     setInputCoinId("");
   }
 
+  //fetches all the available coins in API database from the API endpoint
   async function getCoinList() : Promise<void> {
 
     const response :Response = await fetch(import.meta.env.VITE_API_ALL_COINS);
@@ -57,6 +67,7 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
     setAllCoins(data);
   }
 
+  //Loads the complete list of coins
   useEffect(() => { getCoinList(); }, []);
 
   const listId :string = "searchList";

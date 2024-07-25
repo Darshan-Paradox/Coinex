@@ -1,9 +1,13 @@
-import { Currency, CurrencyList } from "../../types/types.tsx";
-import { useState, useEffect } from "react";
+import { Currency, CurrencyList } from '../../types/types.tsx';
+import { useState, useEffect } from 'react';
 
+/*
+ * Currency Selector handles fetching of all available currencies and letting users select currency to display value of coins
+*/
 function CurrencySelector({ selectedCurrency, setSelectedCurrency }: { selectedCurrency: string, setSelectedCurrency: any }) {
   const [allCurrencies, setAllCurrencies] = useState<CurrencyList>([]);
 
+  //fetch all currencies as list
   async function getCurrencyList(): Promise<void> {
     const response: Response = await fetch(
       import.meta.env.VITE_API_ALL_CURRENCIES,
@@ -17,6 +21,7 @@ function CurrencySelector({ selectedCurrency, setSelectedCurrency }: { selectedC
     setSelectedCurrency(e.target.value);
   }
 
+  //load the list of currencies
   useEffect(() => {
     getCurrencyList();
   }, []);
