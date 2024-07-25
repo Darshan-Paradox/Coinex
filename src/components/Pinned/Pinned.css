@@ -1,0 +1,31 @@
+.bubble {
+  display: flex;
+  flex-flow: row;
+  gap: 5px;
+
+  background: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 100px;
+}
+
+.pinned > span :hover {
+  background: white;
+}
+
+.pinned > span{
+  background: lawngreen;
+}
+
+.pinned {
+  margin-top: 10%;
+  display: flex;
+  flex-flow: row;
+
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  width: 70%;
+}

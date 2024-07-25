@@ -1,0 +1,25 @@
+.bgimg {
+  padding: 0;
+  position: absolute;
+  width: 100vw;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.main-title {
+  color: rgba(0, 0, 0, 0);
+  font-family: "Azeret Mono";
+  font-size: 4rem;
+
+  background: linear-gradient(-45deg, #eeaa52, #e73c6f, #2394d5, #2af3b7);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  text-shadow: -1px -1px 1px white;
+}
+
+#bitcoin {
+  font-size: 3rem !important;
+  border: 1px solid white;
+  border-radius: 100%;
+}
