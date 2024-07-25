@@ -1,4 +1,4 @@
-# Crptocurrency tracker
+# Cryptocurrency tracker
 
 Website made in React+Vite in typescript to display spot prices of your favorite cryptocurrencies 💵 with live updates.
 You can pin your favorite currencies on Dashboard and can view the prices in currency format from any of the countries.
