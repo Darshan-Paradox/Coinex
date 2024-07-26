@@ -1,0 +1,34 @@
+.tracker {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row;
+
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  width: 70%;
+  cursor: pointer;
+}
+
+.bubble {
+  display: flex;
+  flex-flow: row;
+  gap: 5px;
+
+  background: white;
+  color: black;
+  padding: 1rem;
+  border-radius: 100px;
+}
+
+.pin {
+  border-radius: 100%;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.pin:hover {
+  background: rgb(150, 150, 150);
+}

@@ -1,0 +1,26 @@
+.search > input {
+  width: 50%;
+
+  padding: 10px;
+  padding-left: 20px;
+
+  background: rgba(200, 200, 200, 80);
+
+  color: black;
+  font-family: "Inter";
+  font-size: 1.5rem;
+
+  outline: none;
+  border: none;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+
+  caret-color: black;
+}
+
+.search > button {
+  text-align: center;
+
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
