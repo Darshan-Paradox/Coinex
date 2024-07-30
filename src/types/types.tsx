@@ -20,6 +20,16 @@ export type Currency = {
 
 export type CurrencyList = Currency[];
 
+export type CurrencySelectorProps = {
+  selectedCurrency: string,
+  setSelectedCurrency: any
+};
+
+export type SearchListProps = {
+  coinList: CoinList,
+  id: string
+};
+
 //Date-type for global state
 export type GlobalState = {
   coins: CoinList,

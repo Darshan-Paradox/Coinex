@@ -1,5 +1,5 @@
 import { Coin, GlobalState } from '../../types/types.tsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import SearchButton from './SearchButton.tsx';
 import SearchList   from './SearchList.tsx';
@@ -21,18 +21,18 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
   const [inputCoinId, setInputCoinId] = useState<string>("");
 
 
-  function  handleChange(e) : void {
+  const handleChange = useCallback((e) : void => {
     setInputCoinId(e.target.value.toUpperCase());
-  }
+  }, [])
 
   //function to handle Enter/Return key as submission action
-  async function returnToSubmit(e) : Promise<void> {
+  const returnToSubmit = useCallback(async (e) : Promise<void> => {
     if (e.key == "Enter") {
       submit(e);
     }
-  }
+  }, [coins, allCoins, inputCoinId])
 
-  async function submit(e) : Promise<void> {
+  const submit = useCallback(async (e) : Promise<void> => {
 
     if (coins.find((coin :Coin) => coin.data.base === inputCoinId && coin.data.currency === selectedCurrency) !== undefined) {
       alert("Already attached to Dashboard");
@@ -50,21 +50,30 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
       return
     }
 
-    const response :Response = await fetch(`${import.meta.env.VITE_API_SPOT_PRICE}/${inputCoinId}-${selectedCurrency}/spot`);
-    const data :Coin = await response.json();
+    try {
+      const response :Response = await fetch(`${import.meta.env.VITE_API_SPOT_PRICE}/${inputCoinId}-${selectedCurrency}/spot`);
+      const data :Coin = await response.json();
 
-    setCoins([...coins, data]);
+      setCoins([...coins, data]);
 
-    setInputCoinId("");
-  }
+      setInputCoinId("");
+    } catch (err) {
+      console.error(err);
+    }
+
+  }, [coins, allCoins, inputCoinId])
 
   //fetches all the available coins in API database from the API endpoint
   async function getCoinList() : Promise<void> {
 
-    const response :Response = await fetch(import.meta.env.VITE_API_ALL_COINS);
-    const data = await response.json();
+    try {
+      const response :Response = await fetch(import.meta.env.VITE_API_ALL_COINS);
+      const data = await response.json();
 
-    setAllCoins(data);
+      setAllCoins(data);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   //Loads the complete list of coins
