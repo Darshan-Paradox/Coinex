@@ -58,7 +58,7 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
 
       setInputCoinId("");
     } catch (err) {
-      console.error(err);
+      console.error("ERROR fetching initial prices: ", err);
     }
 
   }, [coins, allCoins, inputCoinId])
@@ -72,7 +72,7 @@ function Search({ coins, setCoins, selectedCurrency, setSelectedCurrency, pinned
 
       setAllCoins(data);
     } catch (err) {
-      console.error(err);
+      console.error("ERROR fetching available cryptocurrencies: ", err);
     }
   }
 

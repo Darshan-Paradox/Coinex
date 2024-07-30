@@ -14,7 +14,7 @@ function CurrencySelector({ selectedCurrency, setSelectedCurrency }: CurrencySel
       const data: { data: CurrencyList } = await response.json();
       setAllCurrencies(data.data);
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching FIAT currencies: ", err);
     }
 
   }

@@ -12,7 +12,7 @@ async function updatePrice(tmpCoinsArray :CoinList, coin :Coin, idx :number) {
 
     tmpCoinsArray[idx].data.amount = data.data.amount;
   } catch (err) {
-    console.error(err);
+    console.error("ERROR fetching live prices: ", err);
   }
 }
 
